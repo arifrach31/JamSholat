@@ -17,7 +17,7 @@ export default class WaktuItem extends Component {
   }
 
   componentDidMount(){
-    const{sholat: {isDone}} = this.props;
+    const{waktu: {isDone}} = this.props;
 
     this.setState({isDone: Boolean(isDone)});
   }
