@@ -10,6 +10,7 @@ import {
   FlatList
 } from 'react-native';
 import WaktuItem from '../components/WaktuItem';
+import axios from 'axios';
 
 export default class App extends Component {
 
@@ -19,6 +20,16 @@ export default class App extends Component {
       count: 0,
       waktusholat: []
     }
+  }
+
+  componentDidMount(){
+    const self = this;
+    axios.get(`http://192.168.100.9:8000/api/jamsholat`).then((result)=>{
+      console.log(result);
+      self.setState({
+        waktusholat: result.data
+      });
+    });
   }
 
   _keyExtractor = (item, index) => item.id;
