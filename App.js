@@ -1,21 +1,24 @@
-import {StackNavigator} from 'react-navigation';
-import Waktu from './screens/Waktu';
-import WaktuCreate from './screens/WaktuCreate';
+import React from 'react';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
 
+import AppReducer from './reducers';
+import AppWithNavigationState from './navigators';
+//import { middleware } from './src/utils/redux';
 
-const App = StackNavigator({
-  Home: {
-    screen: Waktu,
-    navigationOptions: {
-      headerTitle: 'Sudahkah Anda Sholat?'
-    }
-  },
-  WaktuCreate: {
-    screen: WaktuCreate,
-    navigationOptions: {
-      headerTitle: 'Tambah Waktu Baru'
-    }
+const store = createStore(
+  AppReducer,
+  applyMiddleware(middleware),
+);
+
+class App extends Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <AppWithNavigationState />
+      </Provider>
+    );
   }
-});
+}
 
 export default App;
