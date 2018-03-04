@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import WaktuItem from '../components/WaktuItem';
 import axios from 'axios';
+import {API_URL} from '../constants';
 
 export default class App extends Component {
 
@@ -24,7 +25,7 @@ export default class App extends Component {
 
   componentDidMount(){
     const self = this;
-    axios.get(`http://192.168.100.9:8000/api/jamsholat`).then((result)=>{
+    axios.get(`${API_URL}/jamsholat`).then((result)=>{
       console.log(result);
       self.setState({
         waktusholat: result.data
