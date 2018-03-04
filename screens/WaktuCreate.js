@@ -62,7 +62,7 @@ export default class WaktuCreate extends Component {
   }
 }
 
-const Styles = StyleSheet.create({
+const styles = StyleSheet.create({
   btnFooter: {
     position: 'absolute',
     bottom: 0,
