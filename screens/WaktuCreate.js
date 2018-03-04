@@ -61,8 +61,13 @@ export default class WaktuCreate extends Component {
     );
   }
 }
+<<<<<<< HEAD
  
 const styles = StyleSheet.create({
+=======
+
+const Styles = StyleSheet.create({
+>>>>>>> a4a7c2677999f4f1395c5006640cec7f1b67beca
   btnFooter: {
     position: 'absolute',
     bottom: 0,

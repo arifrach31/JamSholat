@@ -12,7 +12,10 @@ import {
 import WaktuItem from '../components/WaktuItem';
 import axios from 'axios';
 import {API_URL} from '../constants';
+<<<<<<< HEAD
 import TryRedux from '../components/TryRedux';
+=======
+>>>>>>> a4a7c2677999f4f1395c5006640cec7f1b67beca
 
 export default class App extends Component {
 

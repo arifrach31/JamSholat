@@ -36,7 +36,7 @@ const waktuReducer = function(state = waktuInitialState, action){
   }
   return state;
 }
- 
+
 //STORE
 const rootReducers = combineReducers({
   usersReducer,
@@ -46,7 +46,7 @@ const rootReducers = combineReducers({
 const middlewares = applyMiddleware(
   promiseMiddleware()
 );
-
+ 
 const store = createStore(rootReducers, middlewares);
 
 //SUBSCRIPTIONS
