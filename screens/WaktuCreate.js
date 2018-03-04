@@ -9,7 +9,9 @@ import {
   Input,
   Button
 } from 'native-base';
+import {StyleSheet} from 'react-native';
 import axios from 'axios';
+import {API_URL} from '../constants';
 
 export default class WaktuCreate extends Component {
 
@@ -23,15 +25,18 @@ export default class WaktuCreate extends Component {
   handleSubmit(){
     const text1 = this.state.text1;
     const text2 = this.state.text2;
-
     const goBack = this.props.navigation;
 
-    axios.post(`http://192.168.100.9:8000/api/jamsholat`, {
-      namasholat: text1,
-      waktusholat: text2
-    }).then((result)=>{
-      goBack();
-    })
+    if(text1 && text2) {
+      axios.post(`${API_URL}/jamsholat`, {
+        namasholat: text1,
+        waktusholat: text2
+      }).then((result)=>{
+        goBack();
+      })
+    }
+
+
   }
 
   render(){
@@ -47,12 +52,21 @@ export default class WaktuCreate extends Component {
               <Label>Waktu Sholat</Label>
               <Input onChangeText={(text2)=> this.setState({text2})}/>
             </Item>
-            <Button block onPress={()=>this.handleSubmit()}>
-              <Text>Submit</Text>
-            </Button>
           </Form>
         </Content>
+        <Button full primary onPress={()=>this.handleSubmit()} style={styles.btnFooter}>
+          <Text>Submit</Text>
+        </Button>
       </Container>
     );
   }
 }
+
+const Styles = StyleSheet.create({
+  btnFooter: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0
+  }
+})

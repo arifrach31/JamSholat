@@ -13,6 +13,7 @@ import {
 import {View} from 'react-native';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import{API_URL} from '../constants';
 
 export default class WaktuItem extends Component {
 
@@ -32,9 +33,13 @@ export default class WaktuItem extends Component {
       isDone: !this.state.isDone
     });
 
-    axios.patch(`http://192.168.100.9:8000/api/jamsholat/${id}`, {
+    axios.patch(`${API_URL}/jamsholat/${id}`, {
       isDone: this.state.isDone? 0: 1
     });
+  }
+
+  handleDelete(){
+    axios.delete(`${API_URL}/jamsholat/${id}`);
   }
 
   render(){
@@ -44,14 +49,23 @@ export default class WaktuItem extends Component {
         key={id}
         rightOpenValue={-75}
         body={
-          <View>
-            <CheckBox checked={this.state.isDone} onPress={()=> this.handleDone()}/>
-            <Text>{namasholat}</Text>
-            <Text>{waktusholat}</Text>
+          <View style={{flexDirection: 'row'}}>
+            <View style={{padding: 10}}>
+              <CheckBox checked={this.state.isDone} onPress={()=> this.handleDone()}/>
+            </View>
+            <View style={{padding: 10}}>
+              <Text>{namasholat}</Text>
+            </View>
+            <View style={{padding: 10}}>
+              <Text>{waktusholat}</Text>
+            </View>
+
+
+
           </View>
         }
         right={
-          <Button danger onPress={() => alert('Trash')}>
+          <Button danger onPress={() => this.handleDelete(id)}>
             <Icon active name="trash" />
           </Button>
         }
