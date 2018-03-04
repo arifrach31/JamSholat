@@ -36,7 +36,7 @@ const waktuReducer = function(state = waktuInitialState, action){
   }
   return state;
 }
-
+ 
 //STORE
 const rootReducers = combineReducers({
   usersReducer,
