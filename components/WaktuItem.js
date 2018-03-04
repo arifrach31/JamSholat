@@ -5,8 +5,12 @@ import {
   Body,
   Right,
   CheckBox,
-  Text
+  Text,
+  SwipeRow,
+  Button,
+  Icon
 } from 'native-base';
+import {View} from 'react-native';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
@@ -36,17 +40,22 @@ export default class WaktuItem extends Component {
   render(){
     const {waktu: {id, namasholat, waktusholat}} = this.props;
     return (
-      <ListItem key={id}>
-        <Left>
-          <CheckBox checked={this.state.isDone} onPress={()=> this.handleDone()}/>
-        </Left>
-        <Body>
-          <Text>{namasholat}</Text>
-        </Body>
-        <Right>
-          <Text>{waktusholat}</Text>
-        </Right>
-      </ListItem>
+      <SwipeRow
+        key={id}
+        rightOpenValue={-75}
+        body={
+          <View>
+            <CheckBox checked={this.state.isDone} onPress={()=> this.handleDone()}/>
+            <Text>{namasholat}</Text>
+            <Text>{waktusholat}</Text>
+          </View>
+        }
+        right={
+          <Button danger onPress={() => alert('Trash')}>
+            <Icon active name="trash" />
+          </Button>
+        }
+      />
     );
   }
 }
